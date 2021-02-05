@@ -8,7 +8,7 @@ on:
 jobs:
   comment:
     if: github.event_name == 'issues'
-    runs-on: ubuntu-latet
+    runs-on: ubuntu-latest
     steps:
       - name: add funny comment
         uses: leeorn/funny-commet-action@v2.1
