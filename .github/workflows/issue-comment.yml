@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latet
     steps:
       - name: add funny comment
-        uses: Marta83/funny-commet-action@v2.1
+        uses: leeorn/funny-commet-action@v2.1
         id: funnyComment
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-#           GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }} 
-          GIPHY_TOKEN: ${{ 65QHew199v03lWFno95U1yODCSjBtMCZ }}
+          GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }} 
+#           GIPHY_TOKEN: ${{ 65QHew199v03lWFno95U1yODCSjBtMCZ }}
           comment_type: 'gif'
     
