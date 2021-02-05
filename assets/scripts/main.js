@@ -6,26 +6,17 @@ let volStr = document.getElementById("volume-number");
 let sound = document.getElementById("horn-sound");
 let honkBtn = document.getElementById("honk-btn");
 let volImg = document.getElementById("volume-image"); 
+let updateImg  = document.getElementById("audio-selection");
+let soundImg = document.getElementById("sound-image");
+let hornForm = document.getElementById("party-horn-form")
 
-
-/*
-TODO
-- when the slider changes change tne string vale
-- when the string value changes change the bar
-- 
-- 
-- 
-- 
-*/
-
-function updateVol(){
-
-}
 
 // when the slider changes, change the string value
 function changeStrVal(){
     // change the string
     volStr.value = volSlider.value;
+    if(volSlider.value > 100)
+        volStr.value = 100;
     // adjust the volume
     sound.volume = volSlider.value / 100;
     updateVolImg();
@@ -33,6 +24,8 @@ function changeStrVal(){
 // when the string value changes, change the bar
 function changeSliderVal(){
     volSlider.value = volStr.value;
+    if(volStr.value > 100)
+        volSlider.value = 100;
     sound.volume = volSlider.value / 100;
     updateVolImg();
 }
@@ -53,7 +46,34 @@ function updateVolImg(){
         volImg.src = "assets/media/icons/volume-level-2.svg";
 }
 
+function changeImg(){
+    let airHornChecked = document.getElementById('radio-air-horn').checked;
+    let carHornChecked = document.getElementById('radio-car-horn').checked;
+    let partyHornChecked = document.getElementById('radio-party-horn').checked;
+
+    if(airHornChecked){
+        sound.src = "assets/media/audio/air-horn.mp3";
+        soundImg.src = "assets/media/images/air-horn.svg";
+    }
+
+    if(carHornChecked){
+        sound.src = "assets/media/audio/car-horn.mp3";
+        soundImg.src = "assets/media/images/car.svg";
+    }
+
+    if(partyHornChecked){
+        sound.src = "assets/media/audio/party-horn.mp3";
+        soundImg.src = "assets/media/images/party-horn.svg";
+    }
+}
+
+function makeNoise(event) {
+    event.preventDefault();
+    sound.play();
+}
 
 // events - when something changes it should trigger these
 volSlider.addEventListener("input", changeStrVal);
 volStr.addEventListener("input", changeSliderVal);
+updateImg.addEventListener("change", changeImg);
+hornForm.addEventListener("submit", makeNoise);
